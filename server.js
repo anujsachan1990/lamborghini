@@ -1,9 +1,15 @@
-import https from 'https';
+import config from './config';
+import express from 'express';
+import apiRouter from './api';
+const server = express();
 
-https.get("https://www.sunsuper.com.au",res=>{
-	console.log("response code",res.statusCode);
-	res.on('data',chuck=>{
-		console.log(chuck.toString());
-	})
+server.use(express.static('public'));
+server.use("/api",apiRouter);
+
+
+server.listen(config.port,()=>{
+	console.log("express server is listing on configured port "+config.port);
 });
+
+
 
