@@ -57,39 +57,13 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
+	var _App = __webpack_require__(/*! ./components/App */ 179);
+	
+	var _App2 = _interopRequireDefault(_App);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var App = function App(props) {
-		return _react2.default.createElement(
-			'div',
-			{ className: 'text-center' },
-			_react2.default.createElement(
-				'h2',
-				null,
-				props.appName
-			),
-			_react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement(
-					'p',
-					null,
-					' this is simple description '
-				)
-			)
-		);
-	};
-	
-	App.defaultProps = {
-	
-		appName: 'It\'s purely react component'
-	};
-	
-	App.propTypes = {
-		appName: _react2.default.PropTypes.string
-	};
-	
-	_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById("root"));
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById("root"));
 
 /***/ },
 /* 1 */
@@ -22104,6 +22078,87 @@
 	
 	module.exports = ReactDOMInvalidARIAHook;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../process/browser.js */ 3)))
+
+/***/ },
+/* 178 */
+/*!**********************************!*\
+  !*** ./src/components/Header.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Header = function Header(_ref) {
+		var message = _ref.message;
+	
+		return _react2.default.createElement(
+			'h2',
+			null,
+			message
+		);
+	};
+	
+	Header.propTypes = {
+		message: _react2.default.PropTypes.string
+	};
+	
+	exports.default = Header;
+
+/***/ },
+/* 179 */
+/*!*******************************!*\
+  !*** ./src/components/App.js ***!
+  \*******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Header = __webpack_require__(/*! ./Header */ 178);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var App = function App(props) {
+		return _react2.default.createElement(
+			'div',
+			{ className: 'text-center' },
+			_react2.default.createElement(_Header2.default, { message: 'Naming Contest heading' }),
+			_react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement(
+					'p',
+					null,
+					' this is simple description '
+				)
+			)
+		);
+	};
+	
+	App.propTypes = {
+		message: _react2.default.PropTypes.string
+	};
+	
+	exports.default = App;
 
 /***/ }
 /******/ ]);
