@@ -1,3 +1,6 @@
+body {
+    font-family: cursive;
+}
 .friendsDetail {
     display: inline-block;
     border: 1px solid #ccc;

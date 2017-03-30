@@ -1,25 +1,25 @@
 import React from 'react';
 import Header from './Header';
 import FriendsDetails from './friendsDetail';
-import axios from "axios";
+
 
 class App extends React.Component {
 
-    state = {
+  constructor(props) {
+    super(props);
+  
+   this.state = {
         description : "it's state full component !",
-        friends:[]
+        friends: this.props.initialData
       };
+
+  }
+    
 
 
   componentDidMount(){
-    axios.get("/api/friends")
-    .then(res=> {
-      this.setState({
-          friends:res.data.friends
-      })
 
-    })
-    .catch(console.error);
+
 
   	console.log("did mount");
   }
@@ -38,21 +38,18 @@ class App extends React.Component {
 					<p>  {this.state.description} </p>
 				</div>
 
-				{this.state.friends.map(friend => 
-				
-					<FriendsDetails {...friend}  key={friend.id}/>	
-					
-				)}
+			   {this.state.friends.map(friend => 
+        
+          <FriendsDetails {...friend}  key={friend.id}/>  
+          
+        )};
+
 			</div>
 		)
   }
 }
 
 
-
-App.propTypes = {
-  message: React.PropTypes.string
-}
 
 
 export default App;
