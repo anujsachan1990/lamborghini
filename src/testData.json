@@ -1,0 +1,25 @@
+{
+"friends": [
+      {
+        "id": 1,
+        "name": "Anuj Sachan",
+        "designation" : "React Js Developer"
+      },
+      {
+        "id": 2,
+        "name": "Lakshay Alag",
+         "designation" : "Site Core Developer"
+      },
+      {
+        "id": 3,
+        "name": "Shourya Ranka",
+         "designation" : "Node Js"
+      },
+      {
+        "id": 4,
+        "name": "Sunali Goyal",
+         "designation" : "OOJS"
+      }
+    ]
+}
+

@@ -1,17 +1,47 @@
 import React from 'react';
 import Header from './Header'
+import FriendsDetails from './friendsDetail'
 
+class App extends React.Component {
 
-const App = (props) => {
-	return (
+  constructor(props) {
+    super(props);
+
+    this.state = {
+
+    	description : "it's state full component !"
+    }
+  }
+
+  componentDidMount(){
+
+  	console.log("did mount");
+  }
+
+ componentWillUnmount(){
+
+ 	console.log("will un Mount");
+  }
+
+  render() {
+  	
+    return (
 			<div  className="text-center">
-				<Header message="Naming Contest heading"/>
+				<Header message="Friends and Roles"/>
 				<div>
-					<p> this is simple description </p>
+					<p>  {this.state.description} </p>
 				</div>
+
+				{this.props.friends.map(friend => 
+				
+					<FriendsDetails {...friend}  key={friend.id}/>	
+					
+				)}
 			</div>
 		)
-};
+  }
+}
+
 
 
 App.propTypes = {

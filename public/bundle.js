@@ -57,13 +57,17 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _App = __webpack_require__(/*! ./components/App */ 179);
+	var _app = __webpack_require__(/*! ./components/app */ 178);
 	
-	var _App2 = _interopRequireDefault(_App);
+	var _app2 = _interopRequireDefault(_app);
+	
+	var _testData = __webpack_require__(/*! ./testData.json */ 181);
+	
+	var _testData2 = _interopRequireDefault(_testData);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById("root"));
+	_reactDom2.default.render(_react2.default.createElement(_app2.default, { friends: _testData2.default.friends }), document.getElementById("root"));
 
 /***/ },
 /* 1 */
@@ -22081,6 +22085,105 @@
 
 /***/ },
 /* 178 */
+/*!*******************************!*\
+  !*** ./src/components/app.js ***!
+  \*******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Header = __webpack_require__(/*! ./Header */ 179);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	var _friendsDetail = __webpack_require__(/*! ./friendsDetail */ 180);
+	
+	var _friendsDetail2 = _interopRequireDefault(_friendsDetail);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var App = function (_React$Component) {
+	  _inherits(App, _React$Component);
+	
+	  function App(props) {
+	    _classCallCheck(this, App);
+	
+	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+	
+	    _this.state = {
+	
+	      description: "it's state full component !"
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(App, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	
+	      console.log("did mount");
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	
+	      console.log("will un Mount");
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'text-center' },
+	        _react2.default.createElement(_Header2.default, { message: 'Friends and Roles' }),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            '  ',
+	            this.state.description,
+	            ' '
+	          )
+	        ),
+	        this.props.friends.map(function (friend) {
+	          return _react2.default.createElement(_friendsDetail2.default, _extends({}, friend, { key: friend.id }));
+	        })
+	      );
+	    }
+	  }]);
+	
+	  return App;
+	}(_react2.default.Component);
+	
+	App.propTypes = {
+	  message: _react2.default.PropTypes.string
+	};
+	
+	exports.default = App;
+
+/***/ },
+/* 179 */
 /*!**********************************!*\
   !*** ./src/components/Header.js ***!
   \**********************************/
@@ -22115,13 +22218,13 @@
 	exports.default = Header;
 
 /***/ },
-/* 179 */
-/*!*******************************!*\
-  !*** ./src/components/App.js ***!
-  \*******************************/
+/* 180 */
+/*!*****************************************!*\
+  !*** ./src/components/friendsDetail.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -22131,34 +22234,60 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Header = __webpack_require__(/*! ./Header */ 178);
-	
-	var _Header2 = _interopRequireDefault(_Header);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var App = function App(props) {
+	var FriendsDetails = function FriendsDetails(friend) {
+	
+		console.log(friend);
 		return _react2.default.createElement(
-			'div',
-			{ className: 'text-center' },
-			_react2.default.createElement(_Header2.default, { message: 'Naming Contest heading' }),
+			"div",
+			{ className: "friendsDetail" },
 			_react2.default.createElement(
-				'div',
+				"div",
 				null,
-				_react2.default.createElement(
-					'p',
-					null,
-					' this is simple description '
-				)
+				friend.name
+			),
+			_react2.default.createElement(
+				"div",
+				null,
+				friend.designation
 			)
 		);
 	};
 	
-	App.propTypes = {
-		message: _react2.default.PropTypes.string
+	exports.default = FriendsDetails;
+
+/***/ },
+/* 181 */
+/*!***************************!*\
+  !*** ./src/testData.json ***!
+  \***************************/
+/***/ function(module, exports) {
+
+	module.exports = {
+		"friends": [
+			{
+				"id": 1,
+				"name": "Anuj Sachan",
+				"designation": "React Js Developer"
+			},
+			{
+				"id": 2,
+				"name": "Lakshay Alag",
+				"designation": "Site Core Developer"
+			},
+			{
+				"id": 3,
+				"name": "Shourya Ranka",
+				"designation": "Node Js"
+			},
+			{
+				"id": 4,
+				"name": "Sunali Goyal",
+				"designation": "OOJS"
+			}
+		]
 	};
-	
-	exports.default = App;
 
 /***/ }
 /******/ ]);
