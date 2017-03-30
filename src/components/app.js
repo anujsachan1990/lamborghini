@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header'
 import FriendsDetails from './friendsDetail'
+import data from '../testData.json';
 
 class App extends React.Component {
 
@@ -9,7 +10,9 @@ class App extends React.Component {
 
     this.state = {
 
-    	description : "it's state full component !"
+    	description : "it's state full component !",
+    	friends:data.friends
+
     }
   }
 
@@ -32,7 +35,7 @@ class App extends React.Component {
 					<p>  {this.state.description} </p>
 				</div>
 
-				{this.props.friends.map(friend => 
+				{this.state.friends.map(friend => 
 				
 					<FriendsDetails {...friend}  key={friend.id}/>	
 					

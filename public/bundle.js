@@ -61,13 +61,9 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _testData = __webpack_require__(/*! ./testData.json */ 181);
-	
-	var _testData2 = _interopRequireDefault(_testData);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(_app2.default, { friends: _testData2.default.friends }), document.getElementById("root"));
+	_reactDom2.default.render(_react2.default.createElement(_app2.default, { friends: [] }), document.getElementById("root"));
 
 /***/ },
 /* 1 */
@@ -22112,6 +22108,10 @@
 	
 	var _friendsDetail2 = _interopRequireDefault(_friendsDetail);
 	
+	var _testData = __webpack_require__(/*! ../testData.json */ 181);
+	
+	var _testData2 = _interopRequireDefault(_testData);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22130,7 +22130,9 @@
 	
 	    _this.state = {
 	
-	      description: "it's state full component !"
+	      description: "it's state full component !",
+	      friends: _testData2.default.friends
+	
 	    };
 	    return _this;
 	  }
@@ -22166,7 +22168,7 @@
 	            ' '
 	          )
 	        ),
-	        this.props.friends.map(function (friend) {
+	        this.state.friends.map(function (friend) {
 	          return _react2.default.createElement(_friendsDetail2.default, _extends({}, friend, { key: friend.id }));
 	        })
 	      );
