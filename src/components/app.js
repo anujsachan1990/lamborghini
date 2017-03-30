@@ -1,22 +1,25 @@
 import React from 'react';
-import Header from './Header'
-import FriendsDetails from './friendsDetail'
-import data from '../testData.json';
+import Header from './Header';
+import FriendsDetails from './friendsDetail';
+import axios from "axios";
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
+    state = {
+        description : "it's state full component !",
+        friends:[]
+      };
 
-    this.state = {
-
-    	description : "it's state full component !",
-    	friends:data.friends
-
-    }
-  }
 
   componentDidMount(){
+    axios.get("/api/friends")
+    .then(res=> {
+      this.setState({
+          friends:res.data.friends
+      })
+
+    })
+    .catch(console.error);
 
   	console.log("did mount");
   }
@@ -27,7 +30,7 @@ class App extends React.Component {
   }
 
   render() {
-  	
+  	 console.log(3);
     return (
 			<div  className="text-center">
 				<Header message="Friends and Roles"/>
