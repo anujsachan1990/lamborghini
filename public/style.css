@@ -1,7 +1,7 @@
 body {
     font-family: cursive;
 }
-.friendsDetail {
+.FriendsDetails {
     display: inline-block;
     border: 1px solid #ccc;
     margin: 30px;
@@ -10,4 +10,5 @@ body {
     background: chocolate;
     color: #fff;
     width: 200px;
+    cursor: pointer;
 }

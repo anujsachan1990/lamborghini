@@ -3,27 +3,36 @@
       {
         "id": 1,
         "name": "Anuj Sachan",
-        "designation" : "React Js Developer"
+        "designation" : "React Js Developer",
+        "about":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci minus velit iusto perspiciatis sapiente, eveniet repellendus accusantium pariatur explicabo ex eius distinctio cupiditate. Recusandae quis mollitia veritatis soluta consequuntur!"
       },
       {
         "id": 2,
         "name": "Meenu",
-         "designation" : "AEM"
+        "designation" : "AEM",
+        "about":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci minus velit iusto perspiciatis sapiente, eveniet repellendus accusantium pariatur explicabo ex eius distinctio cupiditate. Recusandae quis mollitia veritatis soluta consequuntur!"
+
       },
       {
         "id": 3,
         "name": "Lakshay Alag",
-         "designation" : "Site Core Developer"
+         "designation" : "Site Core Developer",
+        "about":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci minus velit iusto perspiciatis sapiente, eveniet repellendus accusantium pariatur explicabo ex eius distinctio cupiditate. Recusandae quis mollitia veritatis soluta consequuntur!"
+
       },
       {
         "id": 4,
         "name": "Shourya Ranka",
-         "designation" : "Node Js"
+         "designation" : "Node Js",
+        "about":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci minus velit iusto perspiciatis sapiente, eveniet repellendus accusantium pariatur explicabo ex eius distinctio cupiditate. Recusandae quis mollitia veritatis soluta consequuntur!"
+
       },
       {
         "id": 5,
         "name": "Sunali Goyal",
-         "designation" : "OOJS"
+        "designation" : "OOJS",
+        "about":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci minus velit iusto perspiciatis sapiente, eveniet repellendus accusantium pariatur explicabo ex eius distinctio cupiditate. Recusandae quis mollitia veritatis soluta consequuntur!"
+
       }
     ]
 }
