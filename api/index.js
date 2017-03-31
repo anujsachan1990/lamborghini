@@ -4,7 +4,8 @@ import data from '../src/testData';
 const router = express.Router();
 
 router.get("/friends",(req,res)=>{
-	res.send({friends:data.friends});
+	res.setHeader('Content-Type', 'application/json');
+	res.send(JSON.stringify({friends:data.friends}, null, 3));
 });
 
 

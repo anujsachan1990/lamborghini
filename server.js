@@ -7,6 +7,7 @@ import serverRender from './serverRender';
 
 
 
+
 const server = express();
 
 
@@ -15,7 +16,6 @@ server.use(sassMiddleware({
 	dist:path.join(__dirname,'public/style.css')
 
 }));
-
 
 
 server.use(express.static('public'));
