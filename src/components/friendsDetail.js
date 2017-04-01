@@ -1,16 +1,30 @@
 import React from 'react';
 
-const FriendsDetails = (friend) =>{
+class FriendsDetails extends React.Component {
+  
 
-return (
+  constructor(props) {
+    super(props);
+  }
 
-	<div className="friendsDetail">
-		<div>{friend.name}</div>
-		<div>{friend.designation}</div>
+  handleClick = () =>{
+
+  	console.log(this.props.name);
+
+
+  }
+  render() {
+    return (
+
+	<div className="FriendsDetails" onClick={this.handleClick}>
+		<div>{this.props.name}</div>
+		<div>{this.props.designation}</div>
 	</div>
 
 		)
+  }
 }
+
 
 
 export default FriendsDetails;

@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './components/app';
 import axios from "axios";
 
+const url = window.location.pathname;
 
-axios.get("/api/friends")
+
+axios.get("/api/friends"+url)
     .then(res=> {
     
     ReactDOM.render(
@@ -12,9 +14,7 @@ axios.get("/api/friends")
 	document.getElementById("root")
 )
 
-
-    })
-    .catch(console.error);
+}).catch(console.error);
 
 
 

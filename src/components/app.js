@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
-import FriendsDetails from './friendsDetail';
+import ListComponent from './ListComponent';
+
 
 
 class App extends React.Component {
@@ -30,20 +31,12 @@ class App extends React.Component {
   }
 
   render() {
-  	 console.log(3);
+
     return (
 			<div  className="text-center">
 				<Header message="Friends and Roles"/>
-				<div>
-					<p>  {this.state.description} </p>
-				</div>
-
-			   {this.state.friends.map(friend => 
-        
-          <FriendsDetails {...friend}  key={friend.id}/>  
-          
-        )};
-
+        <p>{this.state.description}</p>
+        <ListComponent friendsList= {this.state.friends} />
 			</div>
 		)
   }
