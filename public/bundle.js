@@ -22150,7 +22150,7 @@
 	      pushState({ friendID: friendID }, '/' + friendID);
 	
 	      _this.setState({
-	        pageHeader: _this.state.friends[friendID - 1].name,
+	
 	        currentFriendId: friendID - 1
 	      });
 	    }, _this.currentFriend = function () {
@@ -22256,9 +22256,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _friendsDetail = __webpack_require__(/*! ./friendsDetail */ 181);
+	var _FriendTile = __webpack_require__(/*! ./FriendTile */ 181);
 	
-	var _friendsDetail2 = _interopRequireDefault(_friendsDetail);
+	var _FriendTile2 = _interopRequireDefault(_FriendTile);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -22271,7 +22271,9 @@
 			'div',
 			null,
 			friendsList.map(function (friend) {
-				return _react2.default.createElement(_friendsDetail2.default, _extends({}, friend, { key: friend.id, onClick: onFriendClick }));
+				return _react2.default.createElement(_FriendTile2.default, _extends({}, friend, {
+					key: friend.id,
+					onClick: onFriendClick }));
 			})
 		);
 	};
@@ -22280,9 +22282,9 @@
 
 /***/ },
 /* 181 */
-/*!*****************************************!*\
-  !*** ./src/components/friendsDetail.js ***!
-  \*****************************************/
+/*!**************************************!*\
+  !*** ./src/components/FriendTile.js ***!
+  \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22305,13 +22307,13 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var FriendsDetails = function (_React$Component) {
-	  _inherits(FriendsDetails, _React$Component);
+	var FriendTile = function (_React$Component) {
+	  _inherits(FriendTile, _React$Component);
 	
-	  function FriendsDetails(props) {
-	    _classCallCheck(this, FriendsDetails);
+	  function FriendTile(props) {
+	    _classCallCheck(this, FriendTile);
 	
-	    var _this = _possibleConstructorReturn(this, (FriendsDetails.__proto__ || Object.getPrototypeOf(FriendsDetails)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (FriendTile.__proto__ || Object.getPrototypeOf(FriendTile)).call(this, props));
 	
 	    _this.handleClick = function () {
 	
@@ -22321,13 +22323,13 @@
 	    return _this;
 	  }
 	
-	  _createClass(FriendsDetails, [{
+	  _createClass(FriendTile, [{
 	    key: "render",
 	    value: function render() {
 	
 	      return _react2.default.createElement(
 	        "div",
-	        { className: "FriendsDetails", onClick: this.handleClick },
+	        { className: "FriendTile", onClick: this.handleClick },
 	        _react2.default.createElement(
 	          "div",
 	          null,
@@ -22342,10 +22344,10 @@
 	    }
 	  }]);
 	
-	  return FriendsDetails;
+	  return FriendTile;
 	}(_react2.default.Component);
 	
-	exports.default = FriendsDetails;
+	exports.default = FriendTile;
 
 /***/ },
 /* 182 */

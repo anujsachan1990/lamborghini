@@ -32,7 +32,7 @@ class App extends React.Component {
         );
 
     this.setState({
-      pageHeader : this.state.friends[friendID-1].name,
+      
       currentFriendId : friendID-1
     })
 
