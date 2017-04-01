@@ -67,7 +67,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_axios2.default.get("/api/friends").then(function (res) {
+	var url = window.location.pathname;
+	
+	_axios2.default.get("/api/friends" + url).then(function (res) {
 	
 	    _reactDom2.default.render(_react2.default.createElement(_app2.default, { initialData: res.data.friends }), document.getElementById("root"));
 	}).catch(console.error);

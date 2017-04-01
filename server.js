@@ -7,7 +7,6 @@ import serverRender from './serverRender';
 
 
 
-
 const server = express();
 
 
@@ -18,6 +17,7 @@ server.use(sassMiddleware({
 }));
 
 
+
 server.use(express.static('public'));
 server.use("/api",apiRouter);
 
@@ -25,8 +25,10 @@ server.use("/api",apiRouter);
 
 server.set("view engine",'ejs');
 
-server.get("/",(req,res) => {
-	serverRender().
+
+server.get("/:id",(req,res) => {
+	console.log(req.params.id);
+	serverRender(req.params.id).
 	then(friends =>{
 		res.render('index',{
 			friends
@@ -35,6 +37,19 @@ server.get("/",(req,res) => {
 	})
 	.catch(console.error);
 });	
+server.get("/",(req,res) => {
+	
+	serverRender().
+	then(friends =>{
+		res.render('index',{
+			friends
+	});
+
+	})
+	.catch(console.error);
+});
+
+
 
 server.listen(config.port,()=>{
 	console.log("express server is listing on configured port "+config.port);

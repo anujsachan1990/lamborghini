@@ -5,8 +5,8 @@ import config from './config';
 import axios from 'axios';
 
 
-const serverRender = () =>
-	axios.get("http://localhost:8080/api/friends").
+const serverRender = (id="") =>
+	axios.get("http://localhost:8080/api/friends/"+id).
 	then(resp=>{
 		return ReactDOMServer.renderToString(
 				<App initialData={resp.data.friends}/>
