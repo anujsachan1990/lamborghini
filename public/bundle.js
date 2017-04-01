@@ -22123,20 +22123,48 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	var pushState = function pushState(obj, url) {
+	  return window.history.pushState(obj, '', url);
+	};
+	
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
 	
-	  function App(props) {
+	  function App() {
+	    var _ref;
+	
+	    var _temp, _this, _ret;
+	
 	    _classCallCheck(this, App);
 	
-	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
 	
-	    _this.state = {
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
 	      description: "it's state full component !",
-	      friends: _this.props.initialData
-	    };
+	      friends: _this.props.initialData,
+	      pageHeader: "You Friends and Roles"
+	    }, _this.fetchFriendsDetails = function (friendID) {
 	
-	    return _this;
+	      pushState({ friendID: friendID }, '/' + friendID);
+	
+	      _this.setState({
+	        pageHeader: _this.state.friends[friendID - 1].name,
+	        currentFriendId: friendID - 1
+	      });
+	    }, _this.currentFriend = function () {
+	      if (_this.state.currentFriendId) {
+	
+	        return _react2.default.createElement(_ListComponent2.default, {
+	          onFriendClick: _this.fetchFriendsDetails,
+	          friendsList: [_this.state.friends[_this.state.currentFriendId]] });
+	      }
+	
+	      return _react2.default.createElement(_ListComponent2.default, {
+	        onFriendClick: _this.fetchFriendsDetails,
+	        friendsList: _this.state.friends });
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 	
 	  _createClass(App, [{
@@ -22158,13 +22186,13 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'text-center' },
-	        _react2.default.createElement(_Header2.default, { message: 'Friends and Roles' }),
+	        _react2.default.createElement(_Header2.default, { message: this.state.pageHeader }),
 	        _react2.default.createElement(
 	          'p',
 	          null,
 	          this.state.description
 	        ),
-	        _react2.default.createElement(_ListComponent2.default, { friendsList: this.state.friends })
+	        this.currentFriend()
 	      );
 	    }
 	  }]);
@@ -22234,14 +22262,16 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var ListComponent = function ListComponent(props) {
-		console.log(props.friendsList);
+	var ListComponent = function ListComponent(_ref) {
+		var friendsList = _ref.friendsList,
+		    onFriendClick = _ref.onFriendClick;
+	
 	
 		return _react2.default.createElement(
 			'div',
 			null,
-			props.friendsList.map(function (friend) {
-				return _react2.default.createElement(_friendsDetail2.default, _extends({}, friend, { key: friend.id }));
+			friendsList.map(function (friend) {
+				return _react2.default.createElement(_friendsDetail2.default, _extends({}, friend, { key: friend.id, onClick: onFriendClick }));
 			})
 		);
 	};
@@ -22285,7 +22315,7 @@
 	
 	    _this.handleClick = function () {
 	
-	      console.log(_this.props.name);
+	      _this.props.onClick(_this.props.id);
 	    };
 	
 	    return _this;
@@ -22294,6 +22324,7 @@
 	  _createClass(FriendsDetails, [{
 	    key: "render",
 	    value: function render() {
+	
 	      return _react2.default.createElement(
 	        "div",
 	        { className: "FriendsDetails", onClick: this.handleClick },

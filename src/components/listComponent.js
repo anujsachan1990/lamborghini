@@ -1,18 +1,20 @@
 import React from 'react';
 import FriendsDetails from './friendsDetail';
 
-const ListComponent = (props) => {
-	console.log(props.friendsList);
+const ListComponent = ({friendsList,onFriendClick}) => {
 
 	return (
 		<div>
-		{props.friendsList.map(friend => 
-          <FriendsDetails {...friend}  key={friend.id}/>  
+		{friendsList.map(friend => 
+          <FriendsDetails {...friend}  key={friend.id} onClick={onFriendClick}/>  
         )}
 		</div>
 
 		)
 
 }
+
+
+
 
 export default ListComponent;

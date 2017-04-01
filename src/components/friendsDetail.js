@@ -9,13 +9,13 @@ class FriendsDetails extends React.Component {
 
   handleClick = () =>{
 
-  	console.log(this.props.name);
+  	this.props.onClick(this.props.id);
 
 
   }
   render() {
-    return (
 
+    return (
 	<div className="FriendsDetails" onClick={this.handleClick}>
 		<div>{this.props.name}</div>
 		<div>{this.props.designation}</div>
