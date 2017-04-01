@@ -40,6 +40,7 @@ class App extends React.Component {
   };
 
   currentFriend = () =>{
+
       if(this.state.currentFriendId!==undefined){
 
         return (

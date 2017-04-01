@@ -22158,6 +22158,7 @@
 	        currentFriendId: friendID
 	      });
 	    }, _this.currentFriend = function () {
+	
 	      if (_this.state.currentFriendId !== undefined) {
 	
 	        return _react2.default.createElement(
