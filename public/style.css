@@ -1,7 +1,7 @@
 body {
     font-family: cursive;
 }
-.FriendsDetails {
+.FriendTile {
     display: inline-block;
     border: 1px solid #ccc;
     margin: 30px;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class FriendsDetails extends React.Component {
+class FriendTile extends React.Component {
   
 
   constructor(props) {
@@ -9,14 +9,14 @@ class FriendsDetails extends React.Component {
 
   handleClick = () =>{
 
-  	console.log(this.props.name);
+  	this.props.onClick(this.props.id);
 
 
   }
   render() {
-    return (
 
-	<div className="FriendsDetails" onClick={this.handleClick}>
+    return (
+	<div className="FriendTile" onClick={this.handleClick}>
 		<div>{this.props.name}</div>
 		<div>{this.props.designation}</div>
 	</div>
@@ -27,4 +27,4 @@ class FriendsDetails extends React.Component {
 
 
 
-export default FriendsDetails;
+export default FriendTile;

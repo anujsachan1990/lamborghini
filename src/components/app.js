@@ -1,26 +1,21 @@
 import React from 'react';
 import Header from './Header';
 import ListComponent from './ListComponent';
+import FriendDetails from './friendDetails';
 
+const pushState = (obj,url) =>
+  window.history.pushState(obj,'',url);
 
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-  
-   this.state = {
+  state = {
         description : "it's state full component !",
-        friends: this.props.initialData
+        friends: this.props.initialData,
+        pageHeader:"You Friends and Roles"
       };
-
-  }
     
-
-
   componentDidMount(){
-
-
 
   	console.log("did mount");
   }
@@ -30,19 +25,52 @@ class App extends React.Component {
  	console.log("will un Mount");
   }
 
+
+  fetchFriendsDetails = (friendID) =>{
+   
+    pushState({friendID:friendID},
+          `/${friendID}`
+        );
+
+    this.setState({
+
+      currentFriendId : friendID
+    })
+
+  };
+
+  currentFriend = () =>{
+
+      if(this.state.currentFriendId!==undefined){
+
+        return (
+          <div>
+            <ListComponent 
+            friendsList= {[this.state.friends[this.state.currentFriendId-1]]}/>
+            <FriendDetails id={this.state.friends[this.state.currentFriendId-1]}/ >
+          </div>
+          )
+      }
+
+     return(
+
+        <ListComponent 
+        onFriendClick={this.fetchFriendsDetails} 
+        friendsList= {this.state.friends}/>
+        )
+  }
+
   render() {
 
     return (
 			<div  className="text-center">
-				<Header message="Friends and Roles"/>
+				<Header message={this.state.pageHeader}/>
         <p>{this.state.description}</p>
-        <ListComponent friendsList= {this.state.friends} />
-			</div>
+		    {this.currentFriend()}
+    	</div>
 		)
   }
 }
-
-
 
 
 export default App;
