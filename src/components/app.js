@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import ListComponent from './ListComponent';
+import FriendDetails from './friendDetails';
 
 const pushState = (obj,url) =>
   window.history.pushState(obj,'',url);
@@ -32,22 +33,22 @@ class App extends React.Component {
         );
 
     this.setState({
-      
-      currentFriendId : friendID-1
+
+      currentFriendId : friendID
     })
 
   };
 
   currentFriend = () =>{
-      if(this.state.currentFriendId){
+      if(this.state.currentFriendId!==undefined){
 
         return (
+          <div>
             <ListComponent 
-        onFriendClick={this.fetchFriendsDetails} 
-        friendsList= {[this.state.friends[this.state.currentFriendId]]}/>
-        
+            friendsList= {[this.state.friends[this.state.currentFriendId-1]]}/>
+            <FriendDetails id={this.state.friends[this.state.currentFriendId-1]}/ >
+          </div>
           )
-          
       }
 
      return(
