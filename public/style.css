@@ -9,11 +9,25 @@ body {
     margin: 30px;
     padding: 30px;
     border-radius: 6px;
-    background: chocolate;
+
+    background: #d9534f;
     color: #fff;
     width: 200px;
     cursor: pointer;
 }
 p {
     font-family: monospace;
+}
+
+.addFriend{
+    max-width: 500px;
+    margin: auto;
+    text-align: left;
+}
+
+fieldset{
+    margin-bottom: 20px;
+}
+button{
+    text-transform: capitalize;
 }

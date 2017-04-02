@@ -61,7 +61,7 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _axios = __webpack_require__(/*! axios */ 183);
+	var _axios = __webpack_require__(/*! axios */ 184);
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
@@ -22119,6 +22119,10 @@
 	
 	var _friendDetails2 = _interopRequireDefault(_friendDetails);
 	
+	var _AddFriend = __webpack_require__(/*! ./AddFriend */ 183);
+	
+	var _AddFriend2 = _interopRequireDefault(_AddFriend);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22173,6 +22177,9 @@
 	      return _react2.default.createElement(_ListComponent2.default, {
 	        onFriendClick: _this.fetchFriendsDetails,
 	        friendsList: _this.state.friends });
+	    }, _this.addFriend = function () {
+	
+	      return _react2.default.createElement(_AddFriend2.default, null);
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 	
@@ -22201,7 +22208,13 @@
 	          null,
 	          this.state.description
 	        ),
-	        this.currentFriend()
+	        this.currentFriend(),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.addFriend, className: 'btn btn-success' },
+	          'add more friend'
+	        ),
+	        _react2.default.createElement(_AddFriend2.default, null)
 	      );
 	    }
 	  }]);
@@ -22412,6 +22425,97 @@
 
 /***/ },
 /* 183 */
+/*!*************************************!*\
+  !*** ./src/components/AddFriend.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var AddFriend = function (_React$Component) {
+	  _inherits(AddFriend, _React$Component);
+	
+	  function AddFriend(props) {
+	    _classCallCheck(this, AddFriend);
+	
+	    return _possibleConstructorReturn(this, (AddFriend.__proto__ || Object.getPrototypeOf(AddFriend)).call(this, props));
+	  }
+	
+	  _createClass(AddFriend, [{
+	    key: "render",
+	    value: function render() {
+	
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement(
+	          "form",
+	          { className: "addFriend", action: "/addFriend" },
+	          _react2.default.createElement(
+	            "fieldset",
+	            { className: "form-group" },
+	            _react2.default.createElement(
+	              "label",
+	              null,
+	              "Name: "
+	            ),
+	            _react2.default.createElement("input", { type: "text", name: "friendname", className: "form-control" })
+	          ),
+	          _react2.default.createElement(
+	            "fieldset",
+	            { className: "form-group" },
+	            _react2.default.createElement(
+	              "label",
+	              null,
+	              "Role: "
+	            ),
+	            _react2.default.createElement("input", { type: "text", name: "role", className: "form-control" })
+	          ),
+	          _react2.default.createElement(
+	            "fieldset",
+	            { className: "form-group" },
+	            _react2.default.createElement(
+	              "label",
+	              null,
+	              "About: "
+	            ),
+	            _react2.default.createElement("textarea", { name: "about", className: "form-control", rows: "8" })
+	          ),
+	          _react2.default.createElement(
+	            "button",
+	            { className: "btn btn-success" },
+	            "Save Details"
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return AddFriend;
+	}(_react2.default.Component);
+	
+	exports.default = AddFriend;
+
+/***/ },
+/* 184 */
 /*!**************************!*\
   !*** ./~/axios/index.js ***!
   \**************************/
@@ -22419,10 +22523,10 @@
 
 	'use strict';
 	
-	module.exports = __webpack_require__(/*! ./lib/axios */ 184);
+	module.exports = __webpack_require__(/*! ./lib/axios */ 185);
 
 /***/ },
-/* 184 */
+/* 185 */
 /*!******************************!*\
   !*** ./~/axios/lib/axios.js ***!
   \******************************/
@@ -22430,10 +22534,10 @@
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./utils */ 185);
-	var bind = __webpack_require__(/*! ./helpers/bind */ 186);
-	var Axios = __webpack_require__(/*! ./core/Axios */ 187);
-	var defaults = __webpack_require__(/*! ./defaults */ 188);
+	var utils = __webpack_require__(/*! ./utils */ 186);
+	var bind = __webpack_require__(/*! ./helpers/bind */ 187);
+	var Axios = __webpack_require__(/*! ./core/Axios */ 188);
+	var defaults = __webpack_require__(/*! ./defaults */ 189);
 	
 	/**
 	 * Create an instance of Axios
@@ -22466,15 +22570,15 @@
 	};
 	
 	// Expose Cancel & CancelToken
-	axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ 205);
-	axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ 206);
-	axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ 202);
+	axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ 206);
+	axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ 207);
+	axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ 203);
 	
 	// Expose all/spread
 	axios.all = function all(promises) {
 	  return Promise.all(promises);
 	};
-	axios.spread = __webpack_require__(/*! ./helpers/spread */ 207);
+	axios.spread = __webpack_require__(/*! ./helpers/spread */ 208);
 	
 	module.exports = axios;
 	
@@ -22482,7 +22586,7 @@
 	module.exports.default = axios;
 
 /***/ },
-/* 185 */
+/* 186 */
 /*!******************************!*\
   !*** ./~/axios/lib/utils.js ***!
   \******************************/
@@ -22492,7 +22596,7 @@
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 	
-	var bind = __webpack_require__(/*! ./helpers/bind */ 186);
+	var bind = __webpack_require__(/*! ./helpers/bind */ 187);
 	
 	/*global toString:true*/
 	
@@ -22787,7 +22891,7 @@
 	};
 
 /***/ },
-/* 186 */
+/* 187 */
 /*!*************************************!*\
   !*** ./~/axios/lib/helpers/bind.js ***!
   \*************************************/
@@ -22806,7 +22910,7 @@
 	};
 
 /***/ },
-/* 187 */
+/* 188 */
 /*!***********************************!*\
   !*** ./~/axios/lib/core/Axios.js ***!
   \***********************************/
@@ -22814,12 +22918,12 @@
 
 	'use strict';
 	
-	var defaults = __webpack_require__(/*! ./../defaults */ 188);
-	var utils = __webpack_require__(/*! ./../utils */ 185);
-	var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ 199);
-	var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ 200);
-	var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ 203);
-	var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ 204);
+	var defaults = __webpack_require__(/*! ./../defaults */ 189);
+	var utils = __webpack_require__(/*! ./../utils */ 186);
+	var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ 200);
+	var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ 201);
+	var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ 204);
+	var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ 205);
 	
 	/**
 	 * Create a new instance of Axios
@@ -22899,7 +23003,7 @@
 	module.exports = Axios;
 
 /***/ },
-/* 188 */
+/* 189 */
 /*!*********************************!*\
   !*** ./~/axios/lib/defaults.js ***!
   \*********************************/
@@ -22907,8 +23011,8 @@
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
-	var utils = __webpack_require__(/*! ./utils */ 185);
-	var normalizeHeaderName = __webpack_require__(/*! ./helpers/normalizeHeaderName */ 189);
+	var utils = __webpack_require__(/*! ./utils */ 186);
+	var normalizeHeaderName = __webpack_require__(/*! ./helpers/normalizeHeaderName */ 190);
 	
 	var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 	var DEFAULT_CONTENT_TYPE = {
@@ -22925,10 +23029,10 @@
 	  var adapter;
 	  if (typeof XMLHttpRequest !== 'undefined') {
 	    // For browsers use XHR adapter
-	    adapter = __webpack_require__(/*! ./adapters/xhr */ 190);
+	    adapter = __webpack_require__(/*! ./adapters/xhr */ 191);
 	  } else if (typeof process !== 'undefined') {
 	    // For node use HTTP adapter
-	    adapter = __webpack_require__(/*! ./adapters/http */ 190);
+	    adapter = __webpack_require__(/*! ./adapters/http */ 191);
 	  }
 	  return adapter;
 	}
@@ -22996,7 +23100,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../process/browser.js */ 3)))
 
 /***/ },
-/* 189 */
+/* 190 */
 /*!****************************************************!*\
   !*** ./~/axios/lib/helpers/normalizeHeaderName.js ***!
   \****************************************************/
@@ -23004,7 +23108,7 @@
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ../utils */ 185);
+	var utils = __webpack_require__(/*! ../utils */ 186);
 	
 	module.exports = function normalizeHeaderName(headers, normalizedName) {
 	  utils.forEach(headers, function processHeader(value, name) {
@@ -23016,7 +23120,7 @@
 	};
 
 /***/ },
-/* 190 */
+/* 191 */
 /*!*************************************!*\
   !*** ./~/axios/lib/adapters/xhr.js ***!
   \*************************************/
@@ -23024,13 +23128,13 @@
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 185);
-	var settle = __webpack_require__(/*! ./../core/settle */ 191);
-	var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ 194);
-	var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ 195);
-	var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ 196);
-	var createError = __webpack_require__(/*! ../core/createError */ 192);
-	var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(/*! ./../helpers/btoa */ 197);
+	var utils = __webpack_require__(/*! ./../utils */ 186);
+	var settle = __webpack_require__(/*! ./../core/settle */ 192);
+	var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ 195);
+	var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ 196);
+	var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ 197);
+	var createError = __webpack_require__(/*! ../core/createError */ 193);
+	var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(/*! ./../helpers/btoa */ 198);
 	
 	module.exports = function xhrAdapter(config) {
 	  return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -23123,7 +23227,7 @@
 	    // This is only done if running in a standard browser environment.
 	    // Specifically not if we're in a web worker, or react-native.
 	    if (utils.isStandardBrowserEnv()) {
-	      var cookies = __webpack_require__(/*! ./../helpers/cookies */ 198);
+	      var cookies = __webpack_require__(/*! ./../helpers/cookies */ 199);
 	
 	      // Add xsrf header
 	      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ? cookies.read(config.xsrfCookieName) : undefined;
@@ -23197,7 +23301,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 3)))
 
 /***/ },
-/* 191 */
+/* 192 */
 /*!************************************!*\
   !*** ./~/axios/lib/core/settle.js ***!
   \************************************/
@@ -23205,7 +23309,7 @@
 
 	'use strict';
 	
-	var createError = __webpack_require__(/*! ./createError */ 192);
+	var createError = __webpack_require__(/*! ./createError */ 193);
 	
 	/**
 	 * Resolve or reject a Promise based on response status.
@@ -23225,7 +23329,7 @@
 	};
 
 /***/ },
-/* 192 */
+/* 193 */
 /*!*****************************************!*\
   !*** ./~/axios/lib/core/createError.js ***!
   \*****************************************/
@@ -23233,7 +23337,7 @@
 
 	'use strict';
 	
-	var enhanceError = __webpack_require__(/*! ./enhanceError */ 193);
+	var enhanceError = __webpack_require__(/*! ./enhanceError */ 194);
 	
 	/**
 	 * Create an Error with the specified message, config, error code, and response.
@@ -23250,7 +23354,7 @@
 	};
 
 /***/ },
-/* 193 */
+/* 194 */
 /*!******************************************!*\
   !*** ./~/axios/lib/core/enhanceError.js ***!
   \******************************************/
@@ -23278,7 +23382,7 @@
 	};
 
 /***/ },
-/* 194 */
+/* 195 */
 /*!*****************************************!*\
   !*** ./~/axios/lib/helpers/buildURL.js ***!
   \*****************************************/
@@ -23286,7 +23390,7 @@
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 185);
+	var utils = __webpack_require__(/*! ./../utils */ 186);
 	
 	function encode(val) {
 	  return encodeURIComponent(val).replace(/%40/gi, '@').replace(/%3A/gi, ':').replace(/%24/g, '$').replace(/%2C/gi, ',').replace(/%20/g, '+').replace(/%5B/gi, '[').replace(/%5D/gi, ']');
@@ -23347,7 +23451,7 @@
 	};
 
 /***/ },
-/* 195 */
+/* 196 */
 /*!*********************************************!*\
   !*** ./~/axios/lib/helpers/parseHeaders.js ***!
   \*********************************************/
@@ -23355,7 +23459,7 @@
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 185);
+	var utils = __webpack_require__(/*! ./../utils */ 186);
 	
 	/**
 	 * Parse headers into an object
@@ -23394,7 +23498,7 @@
 	};
 
 /***/ },
-/* 196 */
+/* 197 */
 /*!************************************************!*\
   !*** ./~/axios/lib/helpers/isURLSameOrigin.js ***!
   \************************************************/
@@ -23402,7 +23506,7 @@
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 185);
+	var utils = __webpack_require__(/*! ./../utils */ 186);
 	
 	module.exports = utils.isStandardBrowserEnv() ?
 	
@@ -23465,7 +23569,7 @@
 	}();
 
 /***/ },
-/* 197 */
+/* 198 */
 /*!*************************************!*\
   !*** ./~/axios/lib/helpers/btoa.js ***!
   \*************************************/
@@ -23508,7 +23612,7 @@
 	module.exports = btoa;
 
 /***/ },
-/* 198 */
+/* 199 */
 /*!****************************************!*\
   !*** ./~/axios/lib/helpers/cookies.js ***!
   \****************************************/
@@ -23516,7 +23620,7 @@
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 185);
+	var utils = __webpack_require__(/*! ./../utils */ 186);
 	
 	module.exports = utils.isStandardBrowserEnv() ?
 	
@@ -23569,7 +23673,7 @@
 	}();
 
 /***/ },
-/* 199 */
+/* 200 */
 /*!************************************************!*\
   !*** ./~/axios/lib/core/InterceptorManager.js ***!
   \************************************************/
@@ -23577,7 +23681,7 @@
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 185);
+	var utils = __webpack_require__(/*! ./../utils */ 186);
 	
 	function InterceptorManager() {
 	  this.handlers = [];
@@ -23629,7 +23733,7 @@
 	module.exports = InterceptorManager;
 
 /***/ },
-/* 200 */
+/* 201 */
 /*!*********************************************!*\
   !*** ./~/axios/lib/core/dispatchRequest.js ***!
   \*********************************************/
@@ -23637,10 +23741,10 @@
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 185);
-	var transformData = __webpack_require__(/*! ./transformData */ 201);
-	var isCancel = __webpack_require__(/*! ../cancel/isCancel */ 202);
-	var defaults = __webpack_require__(/*! ../defaults */ 188);
+	var utils = __webpack_require__(/*! ./../utils */ 186);
+	var transformData = __webpack_require__(/*! ./transformData */ 202);
+	var isCancel = __webpack_require__(/*! ../cancel/isCancel */ 203);
+	var defaults = __webpack_require__(/*! ../defaults */ 189);
 	
 	/**
 	 * Throws a `Cancel` if cancellation has been requested.
@@ -23697,7 +23801,7 @@
 	};
 
 /***/ },
-/* 201 */
+/* 202 */
 /*!*******************************************!*\
   !*** ./~/axios/lib/core/transformData.js ***!
   \*******************************************/
@@ -23705,7 +23809,7 @@
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 185);
+	var utils = __webpack_require__(/*! ./../utils */ 186);
 	
 	/**
 	 * Transform the data for a request or a response
@@ -23725,7 +23829,7 @@
 	};
 
 /***/ },
-/* 202 */
+/* 203 */
 /*!****************************************!*\
   !*** ./~/axios/lib/cancel/isCancel.js ***!
   \****************************************/
@@ -23738,7 +23842,7 @@
 	};
 
 /***/ },
-/* 203 */
+/* 204 */
 /*!**********************************************!*\
   !*** ./~/axios/lib/helpers/isAbsoluteURL.js ***!
   \**********************************************/
@@ -23762,7 +23866,7 @@
 	};
 
 /***/ },
-/* 204 */
+/* 205 */
 /*!********************************************!*\
   !*** ./~/axios/lib/helpers/combineURLs.js ***!
   \********************************************/
@@ -23783,7 +23887,7 @@
 	};
 
 /***/ },
-/* 205 */
+/* 206 */
 /*!**************************************!*\
   !*** ./~/axios/lib/cancel/Cancel.js ***!
   \**************************************/
@@ -23811,7 +23915,7 @@
 	module.exports = Cancel;
 
 /***/ },
-/* 206 */
+/* 207 */
 /*!*******************************************!*\
   !*** ./~/axios/lib/cancel/CancelToken.js ***!
   \*******************************************/
@@ -23819,7 +23923,7 @@
 
 	'use strict';
 	
-	var Cancel = __webpack_require__(/*! ./Cancel */ 205);
+	var Cancel = __webpack_require__(/*! ./Cancel */ 206);
 	
 	/**
 	 * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -23876,7 +23980,7 @@
 	module.exports = CancelToken;
 
 /***/ },
-/* 207 */
+/* 208 */
 /*!***************************************!*\
   !*** ./~/axios/lib/helpers/spread.js ***!
   \***************************************/
