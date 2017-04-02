@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import ListComponent from './ListComponent';
 import FriendDetails from './friendDetails';
+import AddFriend from './AddFriend';
 
 const pushState = (obj,url) =>
   window.history.pushState(obj,'',url);
@@ -60,6 +61,16 @@ class App extends React.Component {
         )
   }
 
+  addFriend = () => {
+
+    return(
+
+      <AddFriend/>
+
+      )
+    
+  }
+
   render() {
 
     return (
@@ -67,6 +78,10 @@ class App extends React.Component {
 				<Header message={this.state.pageHeader}/>
         <p>{this.state.description}</p>
 		    {this.currentFriend()}
+         <button onClick={this.addFriend} className="btn btn-success">add more friend</button>
+         
+         <AddFriend/>
+       
     	</div>
 		)
   }
