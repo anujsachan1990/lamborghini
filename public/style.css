@@ -1,6 +1,8 @@
 body {
     font-family: cursive;
+    font-size: 1.5rem;
 }
+
 .FriendTile {
     display: inline-block;
     border: 1px solid #ccc;
@@ -11,4 +13,7 @@ body {
     color: #fff;
     width: 200px;
     cursor: pointer;
+}
+p {
+    font-family: monospace;
 }

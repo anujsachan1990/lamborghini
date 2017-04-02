@@ -30,21 +30,24 @@ const router = express.Router();
 // });
 
 router.get("/friends",(req,res)=>{
-	let friends = {};
-	mdb.collection("friends").find({})
+	let friends = [];
+	mdb.collection("friends").find()
 	.project({
 		id:1,
 		name:1,
-		designation:1
+		designation:1,
+		about:1
 	})
 	.each((err,friend) =>{
 		//assert.equal(null,error);
+		console.log(friend);
+
 		if(!friend){
-			res.setHeader('Content-Type', 'application/json');
-			res.send(JSON.stringify({friends:[friends]}, null, 3));
+			res.send({friends:friends});
 			return;
 		}
-		friends[friend.id] = friend;
+
+		friends[friend.id -1] = friend;
 
 	});	
 });
