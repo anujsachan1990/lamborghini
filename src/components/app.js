@@ -75,11 +75,13 @@ class App extends React.Component {
 
     return (
 			<div  className="text-center">
+      <img className="logo" src="http://icons.iconarchive.com/icons/searchallwreckers/car/256/Lamborghini-icon.png"/>
+
 				<Header message={this.state.pageHeader}/>
         <p>{this.state.description}</p>
 		    {this.currentFriend()}
          <button onClick={this.addFriend} className="btn btn-success">add more friend</button>
-         
+
          <AddFriend/>
        
     	</div>

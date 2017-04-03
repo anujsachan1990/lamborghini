@@ -32,3 +32,6 @@ fieldset{
 button{
     text-transform: capitalize;
 }
+.logo{
+    max-width: 70px;
+}

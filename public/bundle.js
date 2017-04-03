@@ -22202,6 +22202,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'text-center' },
+	        _react2.default.createElement('img', { className: 'logo', src: 'http://icons.iconarchive.com/icons/searchallwreckers/car/256/Lamborghini-icon.png' }),
 	        _react2.default.createElement(_Header2.default, { message: this.state.pageHeader }),
 	        _react2.default.createElement(
 	          'p',
