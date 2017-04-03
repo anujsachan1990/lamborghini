@@ -4,7 +4,10 @@ import apiRouter from './api';
 import sassMiddleware from 'node-sass-middleware';
 import path from 'path';
 import serverRender from './serverRender';
+import  bodyParser from 'body-parser';
 
+
+ // support 
 
 
 const server = express();
@@ -17,6 +20,7 @@ server.use(sassMiddleware({
 }));
 
 
+server.use(bodyParser.json());
 
 server.use(express.static('public'));
 server.use("/api",apiRouter);
@@ -27,7 +31,6 @@ server.set("view engine",'ejs');
 
 
 server.get("/:id",(req,res) => {
-	console.log(req.params.id);
 	serverRender(req.params.id).
 	then(friends =>{
 		res.render('index',{
@@ -37,6 +40,11 @@ server.get("/:id",(req,res) => {
 	})
 	.catch(console.error);
 });	
+
+
+
+
+
 server.get("/",(req,res) => {
 	
 	serverRender().

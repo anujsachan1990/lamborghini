@@ -52,6 +52,29 @@ router.get("/friends",(req,res)=>{
 	});	
 });
 
+
+router.post("/friends/add",(req,res)=>{
+
+	mdb.collection("friends").insert(req.body);
+	res.send({
+		"status":200,
+		"msg":"record inserted successfully"
+	});
+});
+
+
+router.delete("/friends/removeFriend",(req,res)=>{
+
+	mdb.collection("friends").remove({id: req.body.id});
+
+	res.send({
+		"status":200,
+		"msg":"record deleted successfully"
+	});
+
+});
+
+
 export default router;
 
 

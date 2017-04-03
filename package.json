@@ -4,7 +4,7 @@
   "description": "it's full stack application using React, Node , MongoDB, Express Js",
   "main": "index.js",
   "scripts": {
-   "start": "nodemon --exec babel-node server.js --ignore public/",
+    "start": "nodemon --exec babel-node server.js --ignore public/",
     "dev": "webpack -wd"
   },
   "repository": {
@@ -28,7 +28,7 @@
   "homepage": "https://github.com/anujsachan1990/lamborghini#readme",
   "dependencies": {
     "axios": "^0.15.0",
-    "body-parser": "^1.15.2",
+    "body-parser": "^1.17.1",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "json-loader": "^0.5.4",
