@@ -22123,6 +22123,10 @@
 	
 	var _AddFriend2 = _interopRequireDefault(_AddFriend);
 	
+	var _Logo = __webpack_require__(/*! ./Logo */ 209);
+	
+	var _Logo2 = _interopRequireDefault(_Logo);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22202,7 +22206,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'text-center' },
-	        _react2.default.createElement('img', { className: 'logo', src: 'http://icons.iconarchive.com/icons/searchallwreckers/car/256/Lamborghini-icon.png' }),
+	        _react2.default.createElement(_Logo2.default, { logoUrl: 'http://icons.iconarchive.com/icons/searchallwreckers/car/256/Lamborghini-icon.png' }),
 	        _react2.default.createElement(_Header2.default, { message: this.state.pageHeader }),
 	        _react2.default.createElement(
 	          'p',
@@ -24015,6 +24019,37 @@
 	    return callback.apply(null, arr);
 	  };
 	};
+
+/***/ },
+/* 209 */
+/*!********************************!*\
+  !*** ./src/components/Logo.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+			value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Logo = function Logo(_ref) {
+			var logoUrl = _ref.logoUrl;
+	
+			return _react2.default.createElement("img", { className: "logo", src: logoUrl });
+	};
+	
+	Logo.propTypes = {
+			message: _react2.default.PropTypes.string
+	};
+	
+	exports.default = Logo;
 
 /***/ }
 /******/ ]);

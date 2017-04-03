@@ -3,6 +3,7 @@ import Header from './Header';
 import ListComponent from './ListComponent';
 import FriendDetails from './friendDetails';
 import AddFriend from './AddFriend';
+import Logo from './Logo';
 
 const pushState = (obj,url) =>
   window.history.pushState(obj,'',url);
@@ -75,8 +76,7 @@ class App extends React.Component {
 
     return (
 			<div  className="text-center">
-      <img className="logo" src="http://icons.iconarchive.com/icons/searchallwreckers/car/256/Lamborghini-icon.png"/>
-
+        <Logo logoUrl="http://icons.iconarchive.com/icons/searchallwreckers/car/256/Lamborghini-icon.png"/>
 				<Header message={this.state.pageHeader}/>
         <p>{this.state.description}</p>
 		    {this.currentFriend()}
