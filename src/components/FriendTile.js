@@ -6,6 +6,7 @@ class FriendTile extends React.Component {
 
   constructor(props) {
     super(props);
+     this.editFriend = this.editFriend.bind(this);
   }
 
   handleClick = () =>{
@@ -15,7 +16,8 @@ class FriendTile extends React.Component {
 
   }
 
-  removeFriend=(e)=>{
+  removeFriend = (e) =>{
+     e.stopPropagation();
      axios.post("api/friends/removeFriend",{
       _id: this.props._id
      }).
@@ -23,9 +25,16 @@ class FriendTile extends React.Component {
       console.log("success");
       window.location.reload();
   });
-      e.stopPropagation();
+     
 
   }
+
+editFriend = (e) => {
+ e.stopPropagation();
+ 
+ this.props.oneEditFriend();
+
+}
 
   render() {
 
@@ -34,6 +43,7 @@ class FriendTile extends React.Component {
 		<div>{this.props.name}</div>
 		<div>{this.props.designation}</div>
     <div className="remove" onClick={this.removeFriend}>X</div>
+    <span className="glyphicon glyphicon-edit edit-icon" aria-hidden="true" onClick={this.editFriend}></span>
 	</div>
 
 		)

@@ -1,14 +1,17 @@
 import React from 'react';
-import FriendsDetails from './FriendTile';
+import FriendTile from './FriendTile';
 
-const ListComponent = ({friendsList,onFriendClick}) => {
+const ListComponent = ({friendsList,onFriendClick,onFriendEdit}) => {
 
 	return (
+		
 		<div>
 		{friendsList.map(friend => 
-          <FriendsDetails {...friend}
+          <FriendTile {...friend}
           	key={friend._id} 
-          	onClick={onFriendClick}/>  
+          	onClick={onFriendClick}
+          	oneEditFriend={onFriendEdit}
+          	/>  
         )}
 		</div>
 

@@ -15,19 +15,33 @@ mdb = db;
 
 const router = express.Router();
 
-// router.get("/friends/:id",(req,res)=>{
-// 	let friendList = [];
-// 		if(req.params.id!==null){
-// 				req.params.id.split(",").map(function(i,v){
-// 				friendList.push(data.friends[i-1]);
-// 			});
-// 		}else {
-// 			friendList.push();
-// 		}
+router.get("/friends/:id",(req,res)=>{
 
-// 	res.setHeader('Content-Type', 'application/json');
-// 	res.send(JSON.stringify({friends:friendList}, null, 3));
-// });
+	let friends = [];	
+		mdb.collection("friends").find()
+	.project({
+		id:1,
+		_id:1,
+		name:1,
+		designation:1,
+		about:1
+	})
+	.each((err,friend) =>{
+
+		if(!friend){
+			
+			var z= friends.filter(function (el) {
+ 				 return el._id ==req.params.id
+			});
+			res.send({friends:z});
+			return;
+		}
+		friends[friend._id] = friend;
+		friends.push(friends[friend._id]);
+	});	
+
+});
+
 
 router.get("/friends",(req,res)=>{
 	let friends = [];
