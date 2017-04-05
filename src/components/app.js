@@ -14,7 +14,7 @@ class App extends React.Component {
         friends: this.props.initialData,
         pageHeader:"You Friends and Roles",
         addNewFriend : 0,
-        currentPage:"home"
+        currentPage:"home",
       };
     
   componentDidMount(){
@@ -63,10 +63,24 @@ class App extends React.Component {
 
         <ListComponent 
         onFriendClick={this.fetchFriendsDetails} 
-        friendsList= {this.state.friends}/>
+        friendsList= {this.state.friends}
+        onFriendEdit={this.editFriend}/>
         )
   }
 
+
+editFriend =() =>{
+
+this.setState({
+    description : "it's state full component !",
+    friends: [],
+    pageHeader:"Edit  Friend",
+    addNewFriend : 1,
+    currentPage: "Edit Page"
+
+    });
+
+  }
 
 
   addFriend = () => {
@@ -80,11 +94,11 @@ class App extends React.Component {
     });
   }
 
-  addnewFriend = (context) =>{
+  addnewFriend = () =>{
 
     if(this.state.addNewFriend){
       return(
-        <AddFriend  addFriendList={this.addFriendDb} refernce={context}/>
+        <AddFriend currenpage={this.state.currentPage}/>
       )
     }
 
@@ -104,7 +118,7 @@ class App extends React.Component {
 				<Header message={this.state.pageHeader}/>
         <p>{this.state.description}</p>
 		    {this.currentFriend()}
-        {this.addnewFriend(this)}
+        {this.addnewFriend()}
     	</div>
 		)
   }

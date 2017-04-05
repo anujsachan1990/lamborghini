@@ -47,3 +47,9 @@ button{
     height: 26px;
     line-height: 18px;
 }
+.edit-icon {
+    position: absolute;
+    left: 15px;
+    top: 11px;
+    font-size: 17px;
+}

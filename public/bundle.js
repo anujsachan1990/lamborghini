@@ -22187,7 +22187,18 @@
 	
 	      return _react2.default.createElement(_ListComponent2.default, {
 	        onFriendClick: _this.fetchFriendsDetails,
-	        friendsList: _this.state.friends });
+	        friendsList: _this.state.friends,
+	        onFriendEdit: _this.editFriend });
+	    }, _this.editFriend = function () {
+	
+	      _this.setState({
+	        description: "it's state full component !",
+	        friends: [],
+	        pageHeader: "Edit  Friend",
+	        addNewFriend: 1,
+	        currentPage: "Edit Page"
+	
+	      });
 	    }, _this.addFriend = function () {
 	
 	      _this.setState({
@@ -22197,10 +22208,10 @@
 	        addNewFriend: 1,
 	        currentPage: "listing"
 	      });
-	    }, _this.addnewFriend = function (context) {
+	    }, _this.addnewFriend = function () {
 	
 	      if (_this.state.addNewFriend) {
-	        return _react2.default.createElement(_AddFriend2.default, { addFriendList: _this.addFriendDb, refernce: context });
+	        return _react2.default.createElement(_AddFriend2.default, { currenpage: _this.state.currentPage });
 	      }
 	
 	      if (_this.state.currentPage === "home") {
@@ -22239,7 +22250,7 @@
 	          this.state.description
 	        ),
 	        this.currentFriend(),
-	        this.addnewFriend(this)
+	        this.addnewFriend()
 	      );
 	    }
 	  }]);
@@ -22294,7 +22305,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -22310,19 +22321,22 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var ListComponent = function ListComponent(_ref) {
-		var friendsList = _ref.friendsList,
-		    onFriendClick = _ref.onFriendClick;
+	  var friendsList = _ref.friendsList,
+	      onFriendClick = _ref.onFriendClick,
+	      onFriendEdit = _ref.onFriendEdit;
 	
 	
-		return _react2.default.createElement(
-			'div',
-			null,
-			friendsList.map(function (friend) {
-				return _react2.default.createElement(_FriendTile2.default, _extends({}, friend, {
-					key: friend._id,
-					onClick: onFriendClick }));
-			})
-		);
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    friendsList.map(function (friend) {
+	      return _react2.default.createElement(_FriendTile2.default, _extends({}, friend, {
+	        key: friend._id,
+	        onClick: onFriendClick,
+	        oneEditFriend: onFriendEdit
+	      }));
+	    })
+	  );
 	};
 	
 	exports.default = ListComponent;
@@ -22372,15 +22386,22 @@
 	    };
 	
 	    _this.removeFriend = function (e) {
+	      e.stopPropagation();
 	      _axios2.default.post("api/friends/removeFriend", {
 	        _id: _this.props._id
 	      }).then(function (resp) {
 	        console.log("success");
 	        window.location.reload();
 	      });
-	      e.stopPropagation();
 	    };
 	
+	    _this.editFriend = function (e) {
+	      e.stopPropagation();
+	
+	      _this.props.oneEditFriend();
+	    };
+	
+	    _this.editFriend = _this.editFriend.bind(_this);
 	    return _this;
 	  }
 	
@@ -22405,7 +22426,8 @@
 	          'div',
 	          { className: 'remove', onClick: this.removeFriend },
 	          'X'
-	        )
+	        ),
+	        _react2.default.createElement('span', { className: 'glyphicon glyphicon-edit edit-icon', 'aria-hidden': 'true', onClick: this.editFriend })
 	      );
 	    }
 	  }]);
@@ -22506,6 +22528,12 @@
 	
 	    var _this = _possibleConstructorReturn(this, (AddFriend.__proto__ || Object.getPrototypeOf(AddFriend)).call(this, props));
 	
+	    _this.state = {
+	      name: "",
+	      designation: "",
+	      about: ""
+	    };
+	
 	    _this.sumitHandler = function (e) {
 	      //e.preventDefault();
 	
@@ -22523,10 +22551,22 @@
 	    };
 	
 	    _this.sumitHandler = _this.sumitHandler.bind(_this);
+	
 	    return _this;
 	  }
 	
 	  _createClass(AddFriend, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      if (this.props.currenpage === "Edit Page") {
+	        this.setState({
+	          name: "anuj",
+	          designation: "sachan",
+	          about: "1"
+	        });
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	
@@ -22544,7 +22584,7 @@
 	              null,
 	              'Name: '
 	            ),
-	            _react2.default.createElement('input', { type: 'text', name: 'friendname', className: 'form-control', ref: "friendname" })
+	            _react2.default.createElement('input', { type: 'text', name: 'friendname', className: 'form-control', value: this.state.name })
 	          ),
 	          _react2.default.createElement(
 	            'fieldset',
@@ -22554,7 +22594,7 @@
 	              null,
 	              'Role: '
 	            ),
-	            _react2.default.createElement('input', { type: 'text', name: 'role', className: 'form-control', ref: "role" })
+	            _react2.default.createElement('input', { type: 'text', name: 'role', className: 'form-control', ref: "role", value: this.state.designation })
 	          ),
 	          _react2.default.createElement(
 	            'fieldset',
@@ -22564,7 +22604,7 @@
 	              null,
 	              'About: '
 	            ),
-	            _react2.default.createElement('textarea', { name: 'about', className: 'form-control', rows: '8', ref: "about" })
+	            _react2.default.createElement('textarea', { name: 'about', className: 'form-control', rows: '8', ref: "about", value: this.state.about })
 	          ),
 	          _react2.default.createElement(
 	            'button',
