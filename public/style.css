@@ -10,7 +10,7 @@ body {
     margin: 30px;
     padding: 30px;
     border-radius: 6px;
-
+    position: relative;
     background: #d9534f;
     color: #fff;
     width: 200px;
@@ -34,4 +34,16 @@ button{
 }
 .logo{
     max-width: 70px;
+}
+.remove{
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    font-family: fantasy;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid;
+    padding: 6px;
+    height: 26px;
+    line-height: 18px;
 }

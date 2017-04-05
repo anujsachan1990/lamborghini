@@ -1,12 +1,12 @@
 import express from 'express';
-import { MongoClient } from 'mongodb';
+import mongodb from 'mongodb';
 import {assert} from 'assert';
 import config from '../config';
 //import data from '../src/testData';
 
 let mdb;
 
-MongoClient.connect(config.mongodbUri,(err,db)=>{
+mongodb.MongoClient.connect(config.mongodbUri,(err,db)=>{
 //assert.equal(null,error);
 mdb = db;
 });
@@ -34,20 +34,26 @@ router.get("/friends",(req,res)=>{
 	mdb.collection("friends").find()
 	.project({
 		id:1,
+		_id:1,
 		name:1,
 		designation:1,
 		about:1
 	})
 	.each((err,friend) =>{
 		//assert.equal(null,error);
-		console.log(friend);
+		//console.log(friend);
 
 		if(!friend){
+			console.log(friends)
+
 			res.send({friends:friends});
+
 			return;
 		}
 
-		friends[friend.id -1] = friend;
+		friends[friend._id] = friend;
+		friends.push(friends[friend._id]);
+		
 
 	});	
 });
@@ -55,7 +61,9 @@ router.get("/friends",(req,res)=>{
 
 router.post("/friends/add",(req,res)=>{
 
-	mdb.collection("friends").insert(req.body);
+	console.log(req.body.params);
+
+	mdb.collection("friends").insert(req.body.params);
 	res.send({
 		"status":200,
 		"msg":"record inserted successfully"
@@ -63,9 +71,10 @@ router.post("/friends/add",(req,res)=>{
 });
 
 
-router.delete("/friends/removeFriend",(req,res)=>{
+router.post("/friends/removeFriend",(req,res)=>{
+	console.log(req.body);
 
-	mdb.collection("friends").remove({id: req.body.id});
+	mdb.collection("friends").remove({_id: new mongodb.ObjectID(req.body._id)});
 
 	res.send({
 		"status":200,

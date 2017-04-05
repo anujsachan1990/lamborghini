@@ -22123,6 +22123,10 @@
 	
 	var _AddFriend2 = _interopRequireDefault(_AddFriend);
 	
+	var _Logo = __webpack_require__(/*! ./Logo */ 209);
+	
+	var _Logo2 = _interopRequireDefault(_Logo);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22152,7 +22156,9 @@
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
 	      description: "it's state full component !",
 	      friends: _this.props.initialData,
-	      pageHeader: "You Friends and Roles"
+	      pageHeader: "You Friends and Roles",
+	      addNewFriend: 0,
+	      currentPage: "home"
 	    }, _this.fetchFriendsDetails = function (friendID) {
 	
 	      pushState({ friendID: friendID }, '/' + friendID);
@@ -22164,13 +22170,18 @@
 	    }, _this.currentFriend = function () {
 	
 	      if (_this.state.currentFriendId !== undefined) {
+	        var currentFriendId = _this.state.currentFriendId;
+	
+	        var currentFriend = _this.state.friends.filter(function (el) {
+	          return el._id === currentFriendId;
+	        });
 	
 	        return _react2.default.createElement(
 	          'div',
 	          null,
 	          _react2.default.createElement(_ListComponent2.default, {
-	            friendsList: [_this.state.friends[_this.state.currentFriendId - 1]] }),
-	          _react2.default.createElement(_friendDetails2.default, { id: _this.state.friends[_this.state.currentFriendId - 1] })
+	            friendsList: currentFriend }),
+	          _react2.default.createElement(_friendDetails2.default, { id: currentFriend })
 	        );
 	      }
 	
@@ -22179,7 +22190,26 @@
 	        friendsList: _this.state.friends });
 	    }, _this.addFriend = function () {
 	
-	      return _react2.default.createElement(_AddFriend2.default, null);
+	      _this.setState({
+	        description: "it's state full component !",
+	        friends: [],
+	        pageHeader: "add new Friend",
+	        addNewFriend: 1,
+	        currentPage: "listing"
+	      });
+	    }, _this.addnewFriend = function (context) {
+	
+	      if (_this.state.addNewFriend) {
+	        return _react2.default.createElement(_AddFriend2.default, { addFriendList: _this.addFriendDb, refernce: context });
+	      }
+	
+	      if (_this.state.currentPage === "home") {
+	        return _react2.default.createElement(
+	          'button',
+	          { onClick: _this.addFriend, className: 'btn btn-success' },
+	          ' Add more friend '
+	        );
+	      }
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 	
@@ -22198,11 +22228,10 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'text-center' },
-	        _react2.default.createElement('img', { className: 'logo', src: 'http://icons.iconarchive.com/icons/searchallwreckers/car/256/Lamborghini-icon.png' }),
+	        _react2.default.createElement(_Logo2.default, { logoUrl: 'http://icons.iconarchive.com/icons/searchallwreckers/car/256/Lamborghini-icon.png' }),
 	        _react2.default.createElement(_Header2.default, { message: this.state.pageHeader }),
 	        _react2.default.createElement(
 	          'p',
@@ -22210,12 +22239,7 @@
 	          this.state.description
 	        ),
 	        this.currentFriend(),
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.addFriend, className: 'btn btn-success' },
-	          'add more friend'
-	        ),
-	        _react2.default.createElement(_AddFriend2.default, null)
+	        this.addnewFriend(this)
 	      );
 	    }
 	  }]);
@@ -22295,7 +22319,7 @@
 			null,
 			friendsList.map(function (friend) {
 				return _react2.default.createElement(_FriendTile2.default, _extends({}, friend, {
-					key: friend.id,
+					key: friend._id,
 					onClick: onFriendClick }));
 			})
 		);
@@ -22310,7 +22334,7 @@
   \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -22321,6 +22345,10 @@
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _axios = __webpack_require__(/*! axios */ 184);
+	
+	var _axios2 = _interopRequireDefault(_axios);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -22340,28 +22368,43 @@
 	
 	    _this.handleClick = function () {
 	
-	      _this.props.onClick(_this.props.id);
+	      _this.props.onClick(_this.props._id);
+	    };
+	
+	    _this.removeFriend = function (e) {
+	      _axios2.default.post("api/friends/removeFriend", {
+	        _id: _this.props._id
+	      }).then(function (resp) {
+	        console.log("success");
+	        window.location.reload();
+	      });
+	      e.stopPropagation();
 	    };
 	
 	    return _this;
 	  }
 	
 	  _createClass(FriendTile, [{
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	
 	      return _react2.default.createElement(
-	        "div",
-	        { className: "FriendTile", onClick: this.handleClick },
+	        'div',
+	        { className: 'FriendTile', onClick: this.handleClick },
 	        _react2.default.createElement(
-	          "div",
+	          'div',
 	          null,
 	          this.props.name
 	        ),
 	        _react2.default.createElement(
-	          "div",
+	          'div',
 	          null,
 	          this.props.designation
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'remove', onClick: this.removeFriend },
+	          'X'
 	        )
 	      );
 	    }
@@ -22414,7 +22457,7 @@
 	      return _react2.default.createElement(
 	        'p',
 	        null,
-	        this.props.id.about
+	        this.props.id[0].about
 	      );
 	    }
 	  }]);
@@ -22431,7 +22474,7 @@
   \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -22442,6 +22485,10 @@
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _axios = __webpack_require__(/*! axios */ 184);
+	
+	var _axios2 = _interopRequireDefault(_axios);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -22457,53 +22504,72 @@
 	  function AddFriend(props) {
 	    _classCallCheck(this, AddFriend);
 	
-	    return _possibleConstructorReturn(this, (AddFriend.__proto__ || Object.getPrototypeOf(AddFriend)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (AddFriend.__proto__ || Object.getPrototypeOf(AddFriend)).call(this, props));
+	
+	    _this.sumitHandler = function (e) {
+	      //e.preventDefault();
+	
+	      _axios2.default.post("api/friends/add", {
+	
+	        params: {
+	          "name": _this.refs.friendname.value,
+	          "designation": _this.refs.role.value,
+	          "about": _this.refs.about.value
+	        }
+	
+	      }).then(function (resp) {
+	        console.log("success");
+	      });
+	    };
+	
+	    _this.sumitHandler = _this.sumitHandler.bind(_this);
+	    return _this;
 	  }
 	
 	  _createClass(AddFriend, [{
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	
 	      return _react2.default.createElement(
-	        "div",
+	        'div',
 	        null,
 	        _react2.default.createElement(
-	          "form",
-	          { className: "addFriend", action: "/addFriend" },
+	          'form',
+	          { className: 'addFriend', onSubmit: this.sumitHandler },
 	          _react2.default.createElement(
-	            "fieldset",
-	            { className: "form-group" },
+	            'fieldset',
+	            { className: 'form-group' },
 	            _react2.default.createElement(
-	              "label",
+	              'label',
 	              null,
-	              "Name: "
+	              'Name: '
 	            ),
-	            _react2.default.createElement("input", { type: "text", name: "friendname", className: "form-control" })
+	            _react2.default.createElement('input', { type: 'text', name: 'friendname', className: 'form-control', ref: "friendname" })
 	          ),
 	          _react2.default.createElement(
-	            "fieldset",
-	            { className: "form-group" },
+	            'fieldset',
+	            { className: 'form-group' },
 	            _react2.default.createElement(
-	              "label",
+	              'label',
 	              null,
-	              "Role: "
+	              'Role: '
 	            ),
-	            _react2.default.createElement("input", { type: "text", name: "role", className: "form-control" })
+	            _react2.default.createElement('input', { type: 'text', name: 'role', className: 'form-control', ref: "role" })
 	          ),
 	          _react2.default.createElement(
-	            "fieldset",
-	            { className: "form-group" },
+	            'fieldset',
+	            { className: 'form-group' },
 	            _react2.default.createElement(
-	              "label",
+	              'label',
 	              null,
-	              "About: "
+	              'About: '
 	            ),
-	            _react2.default.createElement("textarea", { name: "about", className: "form-control", rows: "8" })
+	            _react2.default.createElement('textarea', { name: 'about', className: 'form-control', rows: '8', ref: "about" })
 	          ),
 	          _react2.default.createElement(
-	            "button",
-	            { className: "btn btn-success" },
-	            "Save Details"
+	            'button',
+	            { className: 'btn btn-success' },
+	            'Save Details'
 	          )
 	        )
 	      );
@@ -24015,6 +24081,37 @@
 	    return callback.apply(null, arr);
 	  };
 	};
+
+/***/ },
+/* 209 */
+/*!********************************!*\
+  !*** ./src/components/Logo.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+			value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Logo = function Logo(_ref) {
+			var logoUrl = _ref.logoUrl;
+	
+			return _react2.default.createElement("img", { className: "logo", src: logoUrl });
+	};
+	
+	Logo.propTypes = {
+			message: _react2.default.PropTypes.string
+	};
+	
+	exports.default = Logo;
 
 /***/ }
 /******/ ]);

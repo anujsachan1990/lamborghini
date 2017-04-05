@@ -5,7 +5,7 @@ export default class FriendDetails extends Component {
   render() {
     return (
       <p>
-      	{this.props.id.about}
+      	{this.props.id[0].about}
       </p>
     );
   }
