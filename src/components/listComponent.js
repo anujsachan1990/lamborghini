@@ -6,8 +6,8 @@ const ListComponent = ({friendsList,onFriendClick}) => {
 	return (
 		<div>
 		{friendsList.map(friend => 
-          <FriendsDetails {...friend}  
-          	key={friend.id} 
+          <FriendsDetails {...friend}
+          	key={friend._id} 
           	onClick={onFriendClick}/>  
         )}
 		</div>

@@ -34,20 +34,26 @@ router.get("/friends",(req,res)=>{
 	mdb.collection("friends").find()
 	.project({
 		id:1,
+		_id:1,
 		name:1,
 		designation:1,
 		about:1
 	})
 	.each((err,friend) =>{
 		//assert.equal(null,error);
-		console.log(friend);
+		//console.log(friend);
 
 		if(!friend){
+			console.log(friends)
+
 			res.send({friends:friends});
+
 			return;
 		}
 
-		friends[friend.id -1] = friend;
+		friends[friend._id] = friend;
+		friends.push(friends[friend._id]);
+		
 
 	});	
 });

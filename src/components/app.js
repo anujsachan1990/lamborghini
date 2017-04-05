@@ -16,7 +16,8 @@ class App extends React.Component {
         description : "it's state full component !",
         friends: this.props.initialData,
         pageHeader:"You Friends and Roles",
-        addNewFriend : 0
+        addNewFriend : 0,
+        currentPage:"home"
       };
     
   componentDidMount(){
@@ -46,12 +47,17 @@ class App extends React.Component {
   currentFriend = () =>{
 
       if(this.state.currentFriendId!==undefined){
+        let currentFriendId = this.state.currentFriendId;
+
+          let currentFriend = this.state.friends.filter(function (el) {
+              return el._id === currentFriendId
+          });
 
         return (
           <div>
             <ListComponent 
-            friendsList= {[this.state.friends[this.state.currentFriendId-1]]}/>
-            <FriendDetails id={this.state.friends[this.state.currentFriendId-1]}/ >
+            friendsList= {currentFriend}/>
+            <FriendDetails id={currentFriend}/ >
           </div>
           )
       }
@@ -72,20 +78,25 @@ class App extends React.Component {
        description : "it's state full component !",
         friends: [],
         pageHeader:"add new Friend",
-        addNewFriend : 1
+        addNewFriend : 1,
+        currentPage: "listing"
     });
   }
 
   addnewFriend = (context) =>{
+
     if(this.state.addNewFriend){
       return(
         <AddFriend  addFriendList={this.addFriendDb} refernce={context}/>
       )
     }
-    return(
-        <button onClick={this.addFriend} className="btn btn-success">add more friend</button>
 
+    if(this.state.currentPage==="home"){
+      return(
+        <button onClick={this.addFriend} className="btn btn-success"> Add more friend </button>
       )
+    }
+    
   }
 
 

@@ -9,7 +9,7 @@ class FriendTile extends React.Component {
 
   handleClick = () =>{
 
-  	this.props.onClick(this.props.id);
+  	this.props.onClick(this.props._id);
 
 
   }

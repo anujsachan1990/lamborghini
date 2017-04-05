@@ -22161,7 +22161,8 @@
 	      description: "it's state full component !",
 	      friends: _this.props.initialData,
 	      pageHeader: "You Friends and Roles",
-	      addNewFriend: 0
+	      addNewFriend: 0,
+	      currentPage: "home"
 	    }, _this.fetchFriendsDetails = function (friendID) {
 	
 	      pushState({ friendID: friendID }, '/' + friendID);
@@ -22173,13 +22174,18 @@
 	    }, _this.currentFriend = function () {
 	
 	      if (_this.state.currentFriendId !== undefined) {
+	        var currentFriendId = _this.state.currentFriendId;
+	
+	        var currentFriend = _this.state.friends.filter(function (el) {
+	          return el._id === currentFriendId;
+	        });
 	
 	        return _react2.default.createElement(
 	          'div',
 	          null,
 	          _react2.default.createElement(_ListComponent2.default, {
-	            friendsList: [_this.state.friends[_this.state.currentFriendId - 1]] }),
-	          _react2.default.createElement(_friendDetails2.default, { id: _this.state.friends[_this.state.currentFriendId - 1] })
+	            friendsList: currentFriend }),
+	          _react2.default.createElement(_friendDetails2.default, { id: currentFriend })
 	        );
 	      }
 	
@@ -22192,17 +22198,22 @@
 	        description: "it's state full component !",
 	        friends: [],
 	        pageHeader: "add new Friend",
-	        addNewFriend: 1
+	        addNewFriend: 1,
+	        currentPage: "listing"
 	      });
 	    }, _this.addnewFriend = function (context) {
+	
 	      if (_this.state.addNewFriend) {
 	        return _react2.default.createElement(_AddFriend2.default, { addFriendList: _this.addFriendDb, refernce: context });
 	      }
-	      return _react2.default.createElement(
-	        'button',
-	        { onClick: _this.addFriend, className: 'btn btn-success' },
-	        'add more friend'
-	      );
+	
+	      if (_this.state.currentPage === "home") {
+	        return _react2.default.createElement(
+	          'button',
+	          { onClick: _this.addFriend, className: 'btn btn-success' },
+	          ' Add more friend '
+	        );
+	      }
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 	
@@ -22312,7 +22323,7 @@
 			null,
 			friendsList.map(function (friend) {
 				return _react2.default.createElement(_FriendTile2.default, _extends({}, friend, {
-					key: friend.id,
+					key: friend._id,
 					onClick: onFriendClick }));
 			})
 		);
@@ -22357,7 +22368,7 @@
 	
 	    _this.handleClick = function () {
 	
-	      _this.props.onClick(_this.props.id);
+	      _this.props.onClick(_this.props._id);
 	    };
 	
 	    return _this;
@@ -22431,7 +22442,7 @@
 	      return _react2.default.createElement(
 	        'p',
 	        null,
-	        this.props.id.about
+	        this.props.id[0].about
 	      );
 	    }
 	  }]);
@@ -22481,11 +22492,11 @@
 	    var _this = _possibleConstructorReturn(this, (AddFriend.__proto__ || Object.getPrototypeOf(AddFriend)).call(this, props));
 	
 	    _this.sumitHandler = function (e) {
-	      e.preventDefault();
+	      //e.preventDefault();
+	
 	      _axios2.default.post("api/friends1/add", {
 	
 	        params: {
-	          "id": 1,
 	          "name": _this.refs.friendname.value,
 	          "designation": _this.refs.role.value,
 	          "about": _this.refs.about.value
