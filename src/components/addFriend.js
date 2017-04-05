@@ -12,7 +12,7 @@ class AddFriend extends React.Component {
   sumitHandler = (e)=> {
   //e.preventDefault();
 
-   axios.post("api/friends1/add",{
+   axios.post("api/friends/add",{
   
     params: {
       "name" : this.refs.friendname.value,

@@ -4,11 +4,8 @@ import ListComponent from './ListComponent';
 import FriendDetails from './friendDetails';
 import AddFriend from './AddFriend';
 import Logo from './Logo';
-import axios from 'axios';
 
-const pushState = (obj,url) =>
-  window.history.pushState(obj,'',url);
-
+const pushState = (obj,url) => window.history.pushState(obj,'',url);
 
 class App extends React.Component {
 

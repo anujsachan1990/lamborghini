@@ -22127,10 +22127,6 @@
 	
 	var _Logo2 = _interopRequireDefault(_Logo);
 	
-	var _axios = __webpack_require__(/*! axios */ 184);
-	
-	var _axios2 = _interopRequireDefault(_axios);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22338,7 +22334,7 @@
   \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -22349,6 +22345,10 @@
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _axios = __webpack_require__(/*! axios */ 184);
+	
+	var _axios2 = _interopRequireDefault(_axios);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -22371,25 +22371,40 @@
 	      _this.props.onClick(_this.props._id);
 	    };
 	
+	    _this.removeFriend = function (e) {
+	      _axios2.default.post("api/friends/removeFriend", {
+	        _id: _this.props._id
+	      }).then(function (resp) {
+	        console.log("success");
+	        window.location.reload();
+	      });
+	      e.stopPropagation();
+	    };
+	
 	    return _this;
 	  }
 	
 	  _createClass(FriendTile, [{
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	
 	      return _react2.default.createElement(
-	        "div",
-	        { className: "FriendTile", onClick: this.handleClick },
+	        'div',
+	        { className: 'FriendTile', onClick: this.handleClick },
 	        _react2.default.createElement(
-	          "div",
+	          'div',
 	          null,
 	          this.props.name
 	        ),
 	        _react2.default.createElement(
-	          "div",
+	          'div',
 	          null,
 	          this.props.designation
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'remove', onClick: this.removeFriend },
+	          'X'
 	        )
 	      );
 	    }
@@ -22494,7 +22509,7 @@
 	    _this.sumitHandler = function (e) {
 	      //e.preventDefault();
 	
-	      _axios2.default.post("api/friends1/add", {
+	      _axios2.default.post("api/friends/add", {
 	
 	        params: {
 	          "name": _this.refs.friendname.value,

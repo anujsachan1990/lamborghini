@@ -1,12 +1,12 @@
 import express from 'express';
-import { MongoClient } from 'mongodb';
+import mongodb from 'mongodb';
 import {assert} from 'assert';
 import config from '../config';
 //import data from '../src/testData';
 
 let mdb;
 
-MongoClient.connect(config.mongodbUri,(err,db)=>{
+mongodb.MongoClient.connect(config.mongodbUri,(err,db)=>{
 //assert.equal(null,error);
 mdb = db;
 });
@@ -61,15 +61,6 @@ router.get("/friends",(req,res)=>{
 
 router.post("/friends/add",(req,res)=>{
 
-	mdb.collection("friends").insert(req.body);
-	res.send({
-		"status":200,
-		"msg":"record inserted successfully"
-	});
-});
-
-router.post("/friends1/add",(req,res)=>{
-
 	console.log(req.body.params);
 
 	mdb.collection("friends").insert(req.body.params);
@@ -77,14 +68,13 @@ router.post("/friends1/add",(req,res)=>{
 		"status":200,
 		"msg":"record inserted successfully"
 	});
-
 });
 
 
+router.post("/friends/removeFriend",(req,res)=>{
+	console.log(req.body);
 
-router.delete("/friends/removeFriend",(req,res)=>{
-
-	mdb.collection("friends").remove({id: req.body.id});
+	mdb.collection("friends").remove({_id: new mongodb.ObjectID(req.body._id)});
 
 	res.send({
 		"status":200,
