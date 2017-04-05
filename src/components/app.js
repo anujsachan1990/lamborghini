@@ -14,7 +14,8 @@ class App extends React.Component {
   state = {
         description : "it's state full component !",
         friends: this.props.initialData,
-        pageHeader:"You Friends and Roles"
+        pageHeader:"You Friends and Roles",
+        addNewFriend : 0
       };
     
   componentDidMount(){
@@ -62,28 +63,39 @@ class App extends React.Component {
         )
   }
 
+
+
   addFriend = () => {
 
-    return(
-
-      <AddFriend/>
-
-      )
-    
+    this.setState({
+       description : "it's state full component !",
+        friends: [],
+        pageHeader:"add new Friend",
+        addNewFriend : 1
+    });
   }
 
-  render() {
+  addnewFriend = () =>{
+    if(this.state.addNewFriend){
+      return(
+        <AddFriend/>
+      )
+    }
+    return(
+        <button onClick={this.addFriend} className="btn btn-success">add more friend</button>
 
+      )
+  }
+
+
+  render() {
     return (
 			<div  className="text-center">
         <Logo logoUrl="http://icons.iconarchive.com/icons/searchallwreckers/car/256/Lamborghini-icon.png"/>
 				<Header message={this.state.pageHeader}/>
         <p>{this.state.description}</p>
 		    {this.currentFriend()}
-         <button onClick={this.addFriend} className="btn btn-success">add more friend</button>
-
-         <AddFriend/>
-       
+        {this.addnewFriend()}
     	</div>
 		)
   }
