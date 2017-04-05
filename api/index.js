@@ -62,6 +62,19 @@ router.post("/friends/add",(req,res)=>{
 	});
 });
 
+router.post("/friends1/add",(req,res)=>{
+
+	console.log(req.body.params);
+
+	mdb.collection("friends").insert(req.body.params);
+	res.send({
+		"status":200,
+		"msg":"record inserted successfully"
+	});
+
+});
+
+
 
 router.delete("/friends/removeFriend",(req,res)=>{
 

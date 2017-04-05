@@ -4,6 +4,7 @@ import ListComponent from './ListComponent';
 import FriendDetails from './friendDetails';
 import AddFriend from './AddFriend';
 import Logo from './Logo';
+import axios from 'axios';
 
 const pushState = (obj,url) =>
   window.history.pushState(obj,'',url);
@@ -75,10 +76,10 @@ class App extends React.Component {
     });
   }
 
-  addnewFriend = () =>{
+  addnewFriend = (context) =>{
     if(this.state.addNewFriend){
       return(
-        <AddFriend/>
+        <AddFriend  addFriendList={this.addFriendDb} refernce={context}/>
       )
     }
     return(
@@ -95,7 +96,7 @@ class App extends React.Component {
 				<Header message={this.state.pageHeader}/>
         <p>{this.state.description}</p>
 		    {this.currentFriend()}
-        {this.addnewFriend()}
+        {this.addnewFriend(this)}
     	</div>
 		)
   }
