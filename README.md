@@ -8,7 +8,7 @@ Technology Stack:
 5. React-Redux 
 6. Webpack
 
-# Documentation coming soon
+
 
 
 
